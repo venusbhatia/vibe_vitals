@@ -9,13 +9,11 @@ import 'package:google_fonts/google_fonts.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   
-  // Set preferred orientations
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
   
-  // Set system UI overlay style for light mode
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     statusBarColor: Colors.transparent,
     statusBarIconBrightness: Brightness.dark,
@@ -36,7 +34,6 @@ class HealthMonitorApp extends StatelessWidget {
       title: 'Vibe Vitals',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lightTheme(),
-      // Force light mode, don't use system dark mode
       darkTheme: AppTheme.darkTheme(),
       themeMode: ThemeMode.light,
       home: const OnboardingChecker(),
@@ -101,7 +98,6 @@ class BackgroundGradient extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
-    // Ignore dark mode and always use light theme colors
     final isLightMode = Theme.of(context).brightness == Brightness.light;
     
     return Container(

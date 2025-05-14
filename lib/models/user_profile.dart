@@ -27,7 +27,7 @@ class UserProfile {
     this.customActiveBreaksGoal,
   });
 
-  // Calculate age based on date of birth
+  
   int get age {
     final today = DateTime.now();
     int age = today.year - dateOfBirth.year;
@@ -38,14 +38,14 @@ class UserProfile {
     return age;
   }
 
-  // Calculate BMI
+  
   double get bmi {
-    // BMI = weight(kg) / height(m)²
+    
     final heightInMeters = heightCm / 100;
     return weightKg / (heightInMeters * heightInMeters);
   }
 
-  // Convert gender enum to string
+  
   String get genderString {
     switch (gender) {
       case Gender.male:
@@ -59,29 +59,29 @@ class UserProfile {
     }
   }
   
-  // Calculate recommended daily water intake in glasses (1 glass = 250ml)
+  
   int get recommendedWaterIntake {
-    // Base recommendation on weight (30ml per kg)
+    
     double waterInMl = weightKg * 30;
     
-    // Adjust for activity level (assuming moderate)
+    
     waterInMl += 500;
     
-    // Adjust for age - older adults might need slightly less
+    
     if (age > 65) {
       waterInMl *= 0.9;
     }
     
-    // Convert to glasses (250ml per glass)
+    
     int glasses = (waterInMl / 250).round();
     
-    // Cap between 6-12 glasses for reasonable recommendation
+    
     return glasses.clamp(6, 12);
   }
   
-  // Calculate recommended sleep in hours
+  
   double get recommendedSleepHours {
-    // Base sleep recommendation by age
+    
     double baseHours;
     
     if (age <= 1) {
@@ -105,94 +105,94 @@ class UserProfile {
     return baseHours;
   }
   
-  // Calculate recommended daily steps
+  
   int get recommendedSteps {
-    // Base recommendation
+    
     int baseSteps = 10000;
     
-    // Adjust for age
+    
     if (age < 18) {
-      baseSteps = 12000; // Children and teens should move more
+      baseSteps = 12000; 
     } else if (age > 65) {
-      baseSteps = 8000; // Slightly lower for seniors
+      baseSteps = 8000; 
     }
     
-    // Adjust for BMI
+    
     if (bmi > 30) {
-      // For those with obesity, start with a more achievable goal
+      
       baseSteps = (baseSteps * 0.8).round();
     } else if (bmi < 18.5) {
-      // For underweight individuals, moderate activity
+      
       baseSteps = (baseSteps * 0.9).round();
     }
     
-    // Round to nearest 500
+    
     return (baseSteps / 500).round() * 500;
   }
   
-  // Calculate recommended daily digital detox time (minutes)
+  
   int get recommendedDigitalDetox {
-    // Base recommendation - 120 minutes (2 hours) of screen-free time daily
+    
     int baseMinutes = 120;
     
-    // Adjust for age
+    
     if (age < 18) {
-      baseMinutes = 180; // More detox time for youth
+      baseMinutes = 180; 
     } else if (age > 65) {
-      baseMinutes = 150; // Slightly more for seniors for eye health
+      baseMinutes = 150; 
     }
     
-    // Adjust based on occupation (approximated by gender as a proxy)
-    // This is a simplification; ideally would be based on occupation data
+    
+    
     if (gender == Gender.male || gender == Gender.female) {
-      // No adjustment needed, using average
+      
     } else {
-      // Slight adjustment for other or prefer not to say
+      
       baseMinutes = (baseMinutes * 0.9).round();
     }
     
-    // Round to nearest 30 minutes
+    
     return (baseMinutes / 30).round() * 30;
   }
   
-  // Calculate recommended active breaks time (minutes per day)
+  
   int get recommendedActiveBreaks {
-    // Base recommendation - 60 minutes of standing/movement breaks per day
+    
     int baseMinutes = 60;
     
-    // Adjust for age
+    
     if (age < 18) {
-      baseMinutes = 90; // More active time for youth
+      baseMinutes = 90; 
     } else if (age > 65) {
-      baseMinutes = 75; // More breaks for seniors, but not as intense
+      baseMinutes = 75; 
     }
     
-    // Adjust for BMI
+    
     if (bmi > 30) {
-      // For those with obesity, start with slightly higher goal
+      
       baseMinutes = (baseMinutes * 1.2).round();
     } else if (bmi < 18.5) {
-      // For underweight individuals, standard goal
+      
       baseMinutes = baseMinutes;
     }
     
-    // Round to nearest 5 minutes
+    
     return (baseMinutes / 5).round() * 5;
   }
   
-  // Get actual steps goal (custom if set, otherwise recommended)
+  
   int get stepsGoal => customStepsGoal ?? recommendedSteps;
   
-  // Get actual water goal (custom if set, otherwise recommended)
+  
   int get waterGoal => customWaterGoal ?? recommendedWaterIntake;
   
-  // Get actual sleep goal (custom if set, otherwise recommended)
+  
   double get sleepGoal => customSleepGoal ?? recommendedSleepHours;
   
-  // Get actual digital detox goal (custom if set, otherwise recommended)
+  
   int get digitalDetoxGoal => customDigitalDetoxGoal ?? recommendedDigitalDetox;
   
-  // Get actual active breaks goal (custom if set, otherwise recommended)
+  
   int get activeBreaksGoal => customActiveBreaksGoal ?? recommendedActiveBreaks;
 
   UserProfile copyWith({

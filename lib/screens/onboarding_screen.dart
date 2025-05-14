@@ -21,14 +21,14 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   int _currentPage = 0;
   final int _totalPages = 6;
   
-  // User profile data
+  
   String _name = '';
   DateTime? _dateOfBirth;
   Gender _gender = Gender.preferNotToSay;
   double _heightCm = 170.0;
   double _weightKg = 70.0;
   
-  // Goal data with default values
+  
   int _stepsGoal = 10000;
   int _waterGoal = 8;
   double _sleepGoal = 8.0;
@@ -84,7 +84,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
     await _userService.saveUserProfile(userProfile);
     
-    // Ensure we're using light mode UI
+    
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
       statusBarIconBrightness: Brightness.dark,
@@ -93,7 +93,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       systemNavigationBarIconBrightness: Brightness.dark,
     ));
     
-    // Navigate to home screen and replace the route so user can't go back
+    
     if (mounted) {
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
@@ -129,7 +129,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             ],
           ),
           
-          // Bottom navigation
+          
           Positioned(
             left: 0,
             right: 0,
@@ -145,7 +145,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    // Back button (only show if not on first page)
+                    
                     _currentPage > 0
                       ? GestureDetector(
                           onTap: _previousPage,
@@ -164,7 +164,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         )
                       : const SizedBox(width: 40),
                     
-                    // Progress indicator
+                    
                     Expanded(
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -172,7 +172,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       ),
                     ),
                     
-                    // Next button
+                    
                     GestureDetector(
                       onTap: _nextPage,
                       child: Container(
@@ -238,7 +238,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             children: [
               const SizedBox(height: 80),
               
-              // App name with script font - now bigger and bolder
+              
               const Text(
                 'vibe vitals',
                 style: TextStyle(
@@ -251,7 +251,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               
               const SizedBox(height: 3),
               
-              // Main headline
+              
               const Text(
                 "welcome to vibe vitals! \n \nwe'll help you track your health with precision :)",
                 style: TextStyle(
@@ -265,7 +265,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               
               const SizedBox(height: 16),
               
-              // Subheading
+              
               const Text(
                 'Personalized insights to help you achieve your health goals.',
                 style: TextStyle(
@@ -279,7 +279,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               
               const SizedBox(height: 60),
               
-              // Name input field
+              
               Container(
                 decoration: BoxDecoration(
                   color: const Color(0xFFF2F2F7),
@@ -317,7 +317,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               
               const SizedBox(height: 8),
               
-              // Subtitle text
+              
               const Text(
                 'How should we address you?',
                 style: TextStyle(
@@ -350,7 +350,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             children: [
               const SizedBox(height: 40),
               
-              // Page title
+              
               const Text(
                 'When were you born?',
                 style: TextStyle(
@@ -364,7 +364,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               
               const SizedBox(height: 16),
               
-              // Subtitle text
+              
               const Text(
                 'We\'ll use this to calculate your age and provide age-appropriate health insights.',
                 style: TextStyle(
@@ -378,7 +378,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               
               const SizedBox(height: 40),
               
-              // Date picker field
+              
               InkWell(
                 onTap: () async {
                   final currentDate = DateTime.now();
@@ -480,7 +480,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               
               const SizedBox(height: 40),
               
-              // Rest of gender page content
+              
               _buildGenderOption(
                 title: 'Male',
                 value: Gender.male,
@@ -567,7 +567,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         children: [
           const SizedBox(height: 40),
           
-          // Page title
+          
           const Text(
             'Height & Weight',
             style: TextStyle(
@@ -581,7 +581,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           
           const SizedBox(height: 16),
           
-          // Subtitle text
+          
           const Text(
             'This information helps us calculate your BMI and track your fitness progress.',
             style: TextStyle(
@@ -595,12 +595,12 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           
           const SizedBox(height: 40),
           
-          // Height slider
+          
           _buildHeightInput(),
           
           const SizedBox(height: 30),
           
-          // Weight slider
+          
           _buildWeightInput(),
           
           if (_heightCm > 0 && _weightKg > 0) ...[
@@ -789,7 +789,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               } else if (bmi >= 40) {
                 position = constraints.maxWidth;
               } else {
-                // Scale bmi between 15 and 40 to the width of the container
+                
                 position = (bmi - 15) / 25 * constraints.maxWidth;
               }
               
@@ -835,7 +835,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   }
 
   Widget _buildHealthGoalsPage() {
-    // Create a temporary UserProfile to get recommended values
+    
     UserProfile? tempProfile;
     if (_dateOfBirth != null) {
       tempProfile = UserProfile(
@@ -846,7 +846,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         weightKg: _weightKg,
       );
       
-      // Initialize goals with recommended values if they haven't been set
+      
       if (_stepsGoal == 10000) {
         _stepsGoal = tempProfile.recommendedSteps;
       }
@@ -865,7 +865,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         children: [
           const SizedBox(height: 40),
           
-          // Page title
+          
           const Text(
             'Set Your Health Goals',
             style: TextStyle(
@@ -879,7 +879,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           
           const SizedBox(height: 16),
           
-          // Subtitle text
+          
           const Text(
             'We\'ve suggested personalized targets based on your profile. Feel free to adjust them.',
             style: TextStyle(
@@ -893,12 +893,12 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           
           const SizedBox(height: 40),
           
-          // Goal sliders
+          
           Expanded(
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  // Steps Goal
+                  
                   _buildGoalSetting(
                     title: 'Daily Steps',
                     icon: Icons.directions_walk_rounded,
@@ -917,7 +917,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   
                   const SizedBox(height: 24),
                   
-                  // Water Goal
+                  
                   _buildGoalSetting(
                     title: 'Daily Water Intake',
                     icon: Icons.water_drop_rounded,
@@ -936,7 +936,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   
                   const SizedBox(height: 24),
                   
-                  // Sleep Goal
+                  
                   _buildGoalSetting(
                     title: 'Sleep Duration',
                     icon: Icons.bedtime_rounded,
@@ -962,7 +962,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   }
 
   Widget _buildWellnessGoalsPage() {
-    // Create a temporary UserProfile to get recommended values
+    
     UserProfile? tempProfile;
     if (_dateOfBirth != null) {
       tempProfile = UserProfile(
@@ -973,7 +973,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         weightKg: _weightKg,
       );
       
-      // Initialize goals with recommended values if they haven't been set
+      
       if (_digitalDetoxGoal == 120) {
         _digitalDetoxGoal = tempProfile.recommendedDigitalDetox;
       }
@@ -989,7 +989,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         children: [
           const SizedBox(height: 40),
           
-          // Page title
+          
           const Text(
             'Set Your Wellness Goals',
             style: TextStyle(
@@ -1003,7 +1003,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           
           const SizedBox(height: 16),
           
-          // Subtitle text
+          
           const Text(
             'Balance your digital time and physical movement for overall wellbeing.',
             style: TextStyle(
@@ -1017,16 +1017,16 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           
           const SizedBox(height: 40),
           
-          // Goal settings
+          
           Expanded(
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  // Digital Detox Goal
+                  
                   _buildGoalSetting(
                     title: 'Screen-off Time',
                     icon: Icons.phonelink_erase_rounded,
-                    color: const Color(0xFF5E35B1), // Deep purple
+                    color: const Color(0xFF5E35B1), 
                     value: _digitalDetoxGoal.toDouble(),
                     minValue: 30,
                     maxValue: 240,
@@ -1041,11 +1041,11 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   
                   const SizedBox(height: 24),
                   
-                  // Active Breaks Goal
+                  
                   _buildGoalSetting(
                     title: 'Outstanding Time',
                     icon: Icons.accessibility_new_rounded,
-                    color: const Color(0xFF00897B), // Teal
+                    color: const Color(0xFF00897B), 
                     value: _activeBreaksGoal.toDouble(),
                     minValue: 15,
                     maxValue: 120,
@@ -1060,7 +1060,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   
                   const SizedBox(height: 30),
                   
-                  // Tip card
+                  
                   Container(
                     padding: const EdgeInsets.all(20),
                     decoration: BoxDecoration(
@@ -1227,7 +1227,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     );
   }
 
-  // Wrapper for all other onboarding pages
+  
   Widget _wrapWithSafeArea(Widget page) {
     return Container(
       color: Colors.white,

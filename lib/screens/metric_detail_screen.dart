@@ -62,7 +62,7 @@ class _MetricDetailScreenState extends State<MetricDetailScreen> with SingleTick
 
     try {
       final metrics = await _healthService.getMetrics(widget.type);
-      // Sort by timestamp (newest first)
+      
       metrics.sort((a, b) => b.timestamp.compareTo(a.timestamp));
 
       setState(() {
@@ -74,7 +74,7 @@ class _MetricDetailScreenState extends State<MetricDetailScreen> with SingleTick
       setState(() {
         _isLoading = false;
       });
-      // Handle errors
+      
     }
   }
 
@@ -215,7 +215,7 @@ class _MetricDetailScreenState extends State<MetricDetailScreen> with SingleTick
                               ),
                             ),
                           ),
-                    // Add some padding at the bottom
+                    
                     const SliverToBoxAdapter(
                       child: SizedBox(height: 40),
                     ),

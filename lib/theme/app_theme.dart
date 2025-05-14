@@ -3,22 +3,20 @@ import 'package:flutter/cupertino.dart';
 import 'dart:ui';
 
 class AppTheme {
-  // Refined color palette with glass morphism
-  static const Color primaryColor = Color(0xFF3D7AFF); // Refined blue
-  static const Color secondaryColor = Color(0xFF58C8F4); // Refined light blue
-  static const Color accentColor = Color(0xFFFF6B8B); // Soft coral
-  static const Color tertiaryColor = Color(0xFFAE8BFF); // Soft purple
-  static const Color backgroundColor = Color(0xFFF8F9FF); // Soft background
+  static const Color primaryColor = Color(0xFF3D7AFF);
+  static const Color secondaryColor = Color(0xFF58C8F4);
+  static const Color accentColor = Color(0xFFFF6B8B);
+  static const Color tertiaryColor = Color(0xFFAE8BFF);
+  static const Color backgroundColor = Color(0xFFF8F9FF);
   static const Color cardColor = Colors.white;
-  static const Color glassColor = Color(0xDDFFFFFF); // Semi-transparent white
-  static const Color textPrimaryColor = Color(0xFF2C3550); // Deep blue-gray
-  static const Color textSecondaryColor = Color(0xFF8E92A4); // Muted blue-gray
-  static const Color errorColor = Color(0xFFFF5A65); // Refined red
-  static const Color successColor = Color(0xFF4CD964); // Refined green
-  static const Color warningColor = Color(0xFFFFBF47); // Refined orange
-  static const Color dividerColor = Color(0xFFE8EAF6); // Light blue-gray divider
+  static const Color glassColor = Color(0xDDFFFFFF);
+  static const Color textPrimaryColor = Color(0xFF2C3550);
+  static const Color textSecondaryColor = Color(0xFF8E92A4);
+  static const Color errorColor = Color(0xFFFF5A65);
+  static const Color successColor = Color(0xFF4CD964);
+  static const Color warningColor = Color(0xFFFFBF47);
+  static const Color dividerColor = Color(0xFFE8EAF6);
 
-  // Glass effect decorations
   static BoxDecoration glassDecoration({
     double borderRadius = 16,
     Color borderColor = Colors.white30,
@@ -59,7 +57,7 @@ class AppTheme {
       ),
       scaffoldBackgroundColor: backgroundColor,
       useMaterial3: true,
-      fontFamily: '.SF Pro Display', // More elegant iOS system font
+      fontFamily: '.SF Pro Display',
       appBarTheme: const AppBarTheme(
         elevation: 0,
         centerTitle: true,
@@ -178,14 +176,11 @@ class AppTheme {
         color: primaryColor,
         size: 24,
       ),
-      // Ensure we never use dark colors
       brightness: Brightness.light,
     );
   }
 
-  // For dark mode, we still want to use our light theme
   static ThemeData darkTheme() {
-    // Just return the light theme to ensure the app stays in light mode
     return lightTheme();
   }
 } 

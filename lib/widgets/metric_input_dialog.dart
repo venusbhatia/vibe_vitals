@@ -108,10 +108,10 @@ class _MetricInputDialogState extends State<MetricInputDialog> with SingleTicker
         dialogColor = AppTheme.tertiaryColor;
         break;
       case MetricType.digitalDetox:
-        dialogColor = const Color(0xFF5E35B1); // Deep purple
+        dialogColor = const Color(0xFF5E35B1); 
         break;
       case MetricType.activeBreaks:
-        dialogColor = const Color(0xFF00897B); // Teal
+        dialogColor = const Color(0xFF00897B); 
         break;
     }
 
@@ -146,7 +146,7 @@ class _MetricInputDialogState extends State<MetricInputDialog> with SingleTicker
                       mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
-                        // Header
+                        
                         Container(
                           padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 24),
                           decoration: BoxDecoration(
@@ -198,13 +198,13 @@ class _MetricInputDialogState extends State<MetricInputDialog> with SingleTicker
                           ),
                         ),
                         
-                        // Input area
+                        
                         Padding(
                           padding: const EdgeInsets.all(24),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              // Input field
+                              
                               Container(
                                 height: 44,
                                 decoration: BoxDecoration(
@@ -265,7 +265,7 @@ class _MetricInputDialogState extends State<MetricInputDialog> with SingleTicker
                                 ),
                               ),
                               
-                              // Error message
+                              
                               if (_errorText != null)
                                 Padding(
                                   padding: const EdgeInsets.only(top: 8, left: 4),
@@ -290,10 +290,10 @@ class _MetricInputDialogState extends State<MetricInputDialog> with SingleTicker
                               
                               const SizedBox(height: 24),
                               
-                              // Buttons
+                              
                               Row(
                                 children: [
-                                  // Cancel button
+                                  
                                   Expanded(
                                     child: Container(
                                       height: 44,
@@ -321,7 +321,7 @@ class _MetricInputDialogState extends State<MetricInputDialog> with SingleTicker
                                     ),
                                   ),
                                   const SizedBox(width: 16),
-                                  // Save button
+                                  
                                   Expanded(
                                     child: Container(
                                       height: 44,

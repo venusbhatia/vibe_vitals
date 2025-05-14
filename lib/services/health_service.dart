@@ -11,10 +11,8 @@ class HealthService {
   static const String _digitalDetoxKey = 'digital_detox_data';
   static const String _activeBreaksKey = 'active_breaks_data';
 
-  // In-memory cache
   final Map<MetricType, List<HealthMetric>> _cache = {};
 
-  // Singleton instance
   static final HealthService _instance = HealthService._internal();
 
   factory HealthService() {
@@ -23,7 +21,6 @@ class HealthService {
 
   HealthService._internal();
 
-  // Get the storage key for a metric type
   String _getKeyForType(MetricType type) {
     switch (type) {
       case MetricType.steps:
@@ -41,26 +38,20 @@ class HealthService {
     }
   }
 
-  // Add a new health metric
   Future<void> addMetric(HealthMetric metric) async {
     final prefs = await SharedPreferences.getInstance();
     final key = _getKeyForType(metric.type);
     
-    // Get existing data
     final List<HealthMetric> metrics = await getMetrics(metric.type);
     metrics.add(metric);
     
-    // Update cache
     _cache[metric.type] = metrics;
     
-    // Save to storage
     final jsonList = metrics.map((m) => jsonEncode(m.toJson())).toList();
     await prefs.setStringList(key, jsonList);
   }
 
-  // Get metrics by type
   Future<List<HealthMetric>> getMetrics(MetricType type) async {
-    // Return from cache if available
     if (_cache.containsKey(type)) {
       return _cache[type]!;
     }
@@ -73,25 +64,21 @@ class HealthService {
         .map((jsonStr) => HealthMetric.fromJson(jsonDecode(jsonStr)))
         .toList();
     
-    // Update cache
     _cache[type] = metrics;
     
     return metrics;
   }
 
-  // Get the latest metric value by type
   Future<double> getLatestValue(MetricType type) async {
     final metrics = await getMetrics(type);
     if (metrics.isEmpty) {
       return 0;
     }
     
-    // Sort by timestamp (descending) and get the first one
     metrics.sort((a, b) => b.timestamp.compareTo(a.timestamp));
     return metrics.first.value;
   }
 
-  // Get the sum of today's metrics by type
   Future<double> getTodayTotal(MetricType type) async {
     final metrics = await getMetrics(type);
     if (metrics.isEmpty) {
@@ -111,13 +98,11 @@ class HealthService {
     return total;
   }
 
-  // Generate a unique ID
   String _generateId() {
     return DateTime.now().millisecondsSinceEpoch.toString() +
         Random().nextInt(1000).toString();
   }
 
-  // Create a new health metric
   HealthMetric createMetric({
     required String title,
     required double value,

@@ -43,7 +43,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
       ),
     );
     
-    // Ensure we're using light mode UI when the screen loads
+    
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
       statusBarIconBrightness: Brightness.dark,
@@ -67,10 +67,10 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
     });
 
     try {
-      // Load user profile
+      
       final userProfile = await _userService.getUserProfile();
       
-      // Load health metrics
+      
       final stepsValue = await _healthService.getTodayTotal(MetricType.steps);
       final heartRateValue = await _healthService.getLatestValue(MetricType.heartRate);
       final waterValue = await _healthService.getTodayTotal(MetricType.water);
@@ -95,7 +95,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
       setState(() {
         _isLoading = false;
       });
-      // Handle errors
+      
     }
   }
 
@@ -187,7 +187,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
         },
         transitionDuration: const Duration(milliseconds: 400),
       ),
-    ).then((_) => _loadData()); // Refresh data when returning from detail screen
+    ).then((_) => _loadData()); 
   }
 
   @override
@@ -241,7 +241,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                                 },
                                 transitionDuration: const Duration(milliseconds: 300),
                               ),
-                            ).then((_) => _loadData()); // Refresh data when returning from profile
+                            ).then((_) => _loadData()); 
                           },
                         ),
                       ),
@@ -383,7 +383,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                           _metricValues[MetricType.digitalDetox]?.toInt().toString() ?? '0',
                           'mins today',
                           Icons.phonelink_erase_rounded,
-                          const Color(0xFF5E35B1), // Deep purple
+                          const Color(0xFF5E35B1), 
                           () => _navigateToDetailScreen(
                             MetricType.digitalDetox,
                             'Screen-off time',
@@ -397,7 +397,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                           _metricValues[MetricType.activeBreaks]?.toInt().toString() ?? '0',
                           'mins today',
                           Icons.accessibility_new_rounded,
-                          const Color(0xFF00897B), // Teal
+                          const Color(0xFF00897B), 
                           () => _navigateToDetailScreen(
                             MetricType.activeBreaks,
                             'Outstanding time',
@@ -449,14 +449,14 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                           _buildQuickActionButton(
                             'Log Screen-off time',
                             Icons.phonelink_erase_rounded,
-                            const Color(0xFF5E35B1), // Deep purple
+                            const Color(0xFF5E35B1), 
                             () => _showAddMetricDialog(MetricType.digitalDetox),
                           ),
                           const SizedBox(height: 12),
                           _buildQuickActionButton(
                             'Log Outstanding time',
                             Icons.accessibility_new_rounded,
-                            const Color(0xFF00897B), // Teal
+                            const Color(0xFF00897B), 
                             () => _showAddMetricDialog(MetricType.activeBreaks),
                           ),
                           const SizedBox(height: 40),
@@ -511,7 +511,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
     Color color,
     VoidCallback onTap,
   ) {
-    // Get target value based on metric type
+    
     String targetValue = '';
     if (_userProfile != null) {
       if (title == 'Steps') {
@@ -527,7 +527,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
       }
     }
     
-    // Calculate progress for progress indicator
+    
     double progress = 0.0;
     if (targetValue.isNotEmpty && value != '0') {
       double currentVal = double.tryParse(value) ?? 0;
@@ -811,7 +811,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
           : 'Your recommended target of $actualGoal minutes is based on your age and lifestyle factors.\n\nTaking regular breaks from screens helps reduce eye strain, improve focus, and promote better sleep quality.';
       
       dialogIcon = Icons.phonelink_erase_rounded;
-      dialogColor = const Color(0xFF5E35B1); // Deep purple
+      dialogColor = const Color(0xFF5E35B1); 
     } else if (title == 'Outstanding time') {
       dialogTitle = 'Outstanding Time Target';
       final isCustom = _userProfile!.customActiveBreaksGoal != null;
@@ -823,7 +823,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
           : 'Your recommended target of $actualGoal minutes is based on your age and BMI (${_userProfile!.bmi.toStringAsFixed(1)}).\n\nStanding up and moving regularly throughout the day helps improve circulation, reduce stiffness, and boost productivity.';
       
       dialogIcon = Icons.accessibility_new_rounded;
-      dialogColor = const Color(0xFF00897B); // Teal
+      dialogColor = const Color(0xFF00897B); 
     }
     
     showDialog(

@@ -6,7 +6,7 @@ class UserService {
   static const String _userProfileKey = 'user_profile';
   static const String _hasCompletedOnboardingKey = 'has_completed_onboarding';
 
-  // Save user profile
+  
   Future<void> saveUserProfile(UserProfile profile) async {
     final prefs = await SharedPreferences.getInstance();
     final profileMap = {
@@ -25,7 +25,7 @@ class UserService {
     await prefs.setBool(_hasCompletedOnboardingKey, true);
   }
 
-  // Get user profile
+  
   Future<UserProfile?> getUserProfile() async {
     final prefs = await SharedPreferences.getInstance();
     final profileString = prefs.getString(_userProfileKey);
@@ -53,18 +53,18 @@ class UserService {
     }
   }
 
-  // Update user profile
+  
   Future<void> updateUserProfile(UserProfile profile) async {
     await saveUserProfile(profile);
   }
 
-  // Check if user has completed onboarding
+  
   Future<bool> hasCompletedOnboarding() async {
     final prefs = await SharedPreferences.getInstance();
     return prefs.getBool(_hasCompletedOnboardingKey) ?? false;
   }
 
-  // Reset onboarding status (for testing)
+  
   Future<void> resetOnboardingStatus() async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setBool(_hasCompletedOnboardingKey, false);

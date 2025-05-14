@@ -25,7 +25,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   void initState() {
     super.initState();
     
-    // Ensure we're using light mode UI
+    
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
       statusBarIconBrightness: Brightness.dark,
@@ -196,11 +196,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
           child: ListView(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
             children: [
-              // Profile header
+              
               _buildProfileHeader(),
               const SizedBox(height: 40),
               
-              // Personal Information section
+              
               _buildInfoCategory('Personal Information'),
               const SizedBox(height: 16),
               _buildEditableNameField(),
@@ -210,7 +210,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               _buildGenderSelector(),
               const SizedBox(height: 30),
               
-              // Body Measurements section
+              
               _buildInfoCategory('Body Measurements'),
               const SizedBox(height: 16),
               _buildHeightSlider(),
@@ -220,7 +220,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               _buildBMICard(),
               const SizedBox(height: 40),
               
-              // Health Recommendations section
+              
               _buildInfoCategory('Personal Recommendations'),
               const SizedBox(height: 16),
               _buildRecommendationsCard(),
@@ -1140,7 +1140,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       } else if (bmi >= 40) {
                         position = constraints.maxWidth;
                       } else {
-                        // Scale bmi between 15 and 40 to the width of the container
+                        
                         position = (bmi - 15) / 25 * constraints.maxWidth;
                       }
                       
@@ -1323,7 +1323,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
                 const SizedBox(height: 20),
                 
-                // Steps recommendation
+                
                 _buildRecommendationItem(
                   icon: Icons.directions_walk_rounded,
                   color: AppTheme.primaryColor,
@@ -1334,7 +1334,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
                 const SizedBox(height: 16),
                 
-                // Water recommendation
+                
                 _buildRecommendationItem(
                   icon: Icons.water_drop_rounded,
                   color: AppTheme.secondaryColor,
@@ -1345,7 +1345,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
                 const SizedBox(height: 16),
                 
-                // Sleep recommendation
+                
                 _buildRecommendationItem(
                   icon: Icons.bedtime_rounded,
                   color: AppTheme.tertiaryColor,
@@ -1356,10 +1356,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
                 const SizedBox(height: 16),
                 
-                // Digital Detox recommendation
+                
                 _buildRecommendationItem(
                   icon: Icons.phonelink_erase_rounded,
-                  color: const Color(0xFF5E35B1), // Deep purple
+                  color: const Color(0xFF5E35B1), 
                   title: 'Digital Detox',
                   value: '${_userProfile!.digitalDetoxGoal} mins',
                   description: _getDigitalDetoxRecommendationText(),
@@ -1367,10 +1367,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
                 const SizedBox(height: 16),
                 
-                // Active Breaks recommendation
+                
                 _buildRecommendationItem(
                   icon: Icons.accessibility_new_rounded,
-                  color: const Color(0xFF00897B), // Teal
+                  color: const Color(0xFF00897B), 
                   title: 'Active Breaks',
                   value: '${_userProfile!.activeBreaksGoal} mins',
                   description: _getActiveBreaksRecommendationText(),
@@ -1458,7 +1458,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ),
                       const SizedBox(height: 20),
                       
-                      // Steps slider
+                      
                       _buildGoalSlider(
                         title: 'Daily Steps',
                         icon: Icons.directions_walk_rounded,
@@ -1474,7 +1474,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ),
                       const SizedBox(height: 16),
                       
-                      // Water slider
+                      
                       _buildGoalSlider(
                         title: 'Water Intake',
                         icon: Icons.water_drop_rounded,
@@ -1490,7 +1490,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ),
                       const SizedBox(height: 16),
                       
-                      // Sleep slider
+                      
                       _buildGoalSlider(
                         title: 'Sleep Duration',
                         icon: Icons.bedtime_rounded,
@@ -1506,11 +1506,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ),
                       const SizedBox(height: 16),
                       
-                      // Digital Detox slider
+                      
                       _buildGoalSlider(
                         title: 'Digital Detox',
                         icon: Icons.phonelink_erase_rounded,
-                        color: const Color(0xFF5E35B1), // Deep purple
+                        color: const Color(0xFF5E35B1), 
                         value: digitalDetoxGoal.toDouble(),
                         min: 30,
                         max: 240,
@@ -1522,11 +1522,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ),
                       const SizedBox(height: 16),
                       
-                      // Active Breaks slider
+                      
                       _buildGoalSlider(
                         title: 'Active Breaks',
                         icon: Icons.accessibility_new_rounded,
-                        color: const Color(0xFF00897B), // Teal
+                        color: const Color(0xFF00897B), 
                         value: activeBreaksGoal.toDouble(),
                         min: 15,
                         max: 120,

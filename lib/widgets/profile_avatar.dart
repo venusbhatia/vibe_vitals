@@ -83,14 +83,14 @@ class _ProfileAvatarState extends State<ProfileAvatar> with SingleTickerProvider
                   ],
                 ),
                 boxShadow: [
-                  // Outer shadow
+                  
                   BoxShadow(
                     color: Colors.black.withOpacity(0.2),
                     blurRadius: widget.size * 0.2,
                     offset: const Offset(0, 3),
                     spreadRadius: 1,
                   ),
-                  // Inner highlight
+                  
                   BoxShadow(
                     color: Colors.white.withOpacity(0.1),
                     blurRadius: widget.size * 0.1,
